@@ -1,0 +1,26 @@
+// script.js
+document.getElementById('calculateBtn').addEventListener('click', () => {
+    const name1 = document.getElementById('name1').value.trim();
+    const name2 = document.getElementById('name2').value.trim();
+    const resultDiv = document.getElementById('result');
+    const percentageSpan = document.getElementById('percentage');
+
+    if (name1 === '' || name2 === '') {
+        alert('Please enter both names!');
+        return;
+    }
+
+    // Simple deterministic logic: Combine names and calculate a "love score"
+    const combined = (name1 + name2).toLowerCase();
+    let score = 0;
+
+    for (let i = 0; i < combined.length; i++) {
+        score += combined.charCodeAt(i);
+    }
+
+    const lovePercentage = (score % 100) + 1; // Ensures 1% to 100%
+
+    // Display result
+    percentageSpan.textContent = lovePercentage;
+    resultDiv.classList.remove('hidden');
+});
